@@ -8,7 +8,11 @@ const ghPages = process.env.GITHUB_ACTIONS === 'true'
 const config = {
 	preprocess: autoPreprocess(),
 	kit: {
-		adapter: ghPages ? adaptaterStatic() :  adapterAuto(),
+		adapter: ghPages ? adapterStatic() :  adapterAuto(),
+		paths: {
+      // assets: ghPages ? 'https://raw.githubusercontent.com/teia-community/teia-logos/gh-pages': '',
+      base: ghPages ? '/teia-logos' : '',
+    },
 	}
 
 };
