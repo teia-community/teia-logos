@@ -14,13 +14,16 @@
   let sync_date = "xx-xx-xx";
 
   onMount(async () => {
-    let logos_fetch = await fetch("https://teia.art/logos/logos.json");
-    logos_fetch = await logos_fetch.json();
+    let logos_fetch = await (
+      await fetch(
+        "https://raw.githubusercontent.com/teia-community/teia-logos/main/dist/logos.json"
+      )
+    ).json();
     logos = logos_fetch.logos;
     sync_date = logos_fetch.sync_date || "Unknown";
 
     current_logos = logos.map((logo) => {
-      return `https://teia.art/logos/${$theme}/${logo}`;
+      return `https://raw.githubusercontent.com/teia-community/teia-logos/main/dist/logos/${$theme}/${logo}`;
     });
 
     figlet.text(
@@ -49,7 +52,7 @@
   let current_logos = [];
   theme.subscribe((t) => {
     current_logos = logos.map((logo) => {
-      return `https://teia.art/logos/${$theme}/${logo}`;
+      return `https://raw.githubusercontent.com/teia-community/teia-logos/main/dist/logos/${$theme}/${logo}`;
     });
   });
   console.log(`URL Origin: ${$page.url.origin}`);
