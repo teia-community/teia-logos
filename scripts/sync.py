@@ -135,6 +135,7 @@ if __name__ == "__main__":
     urls = {
         "dark": "approved_conformed_dark",
         "light": "approved_conformed_light",
+        "pride": "approved_conformed_pride",
     }
 
     if "-d" in sys.argv:
@@ -205,22 +206,36 @@ if __name__ == "__main__":
         x for x in os.listdir("dist/logos/dark") if x.endswith(".png")
     ]
 
+    logos_pride = [
+        x for x in os.listdir("dist/logos/pride") if x.endswith(".png")
+    ]
+
     # same lenght
     assert len(logos_light) == len(logos_dark)
 
     # matchig counterpart
     assert logos_light == logos_dark
 
-    logos = [x for x in os.listdir("dist/logos/dark") if x.endswith(".png")]
-    logos.sort()
+    logos_dark.sort()
+    logos_pride.sort()
     now = datetime.datetime.now()
-    # TODO: add date to json
+
     with open("dist/logos.json", "w") as logo:
         json.dump(
             {
-                "logos": logos,
+                "logos": logos_dark,
                 "sync_date": now.strftime("%Y-%m-%d %H:%M:%S"),
-                "count": len(logos),
+                "count": len(logos_dark),
+            },
+            logo,
+        )
+
+    with open("dist/logos_pride.json", "w") as logo:
+        json.dump(
+            {
+                "logos": logos_pride,
+                "sync_date": now.strftime("%Y-%m-%d %H:%M:%S"),
+                "count": len(logos_pride),
             },
             logo,
         )
