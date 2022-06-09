@@ -16,6 +16,7 @@ Author:
 
 """
 import subprocess
+
 # import gdown
 import sys
 import os
@@ -27,7 +28,7 @@ from PIL import ImageOps
 import datetime
 
 
-fontFile = os.path.join(os.path.dirname(__file__),"IBMPlexMono-Bold.otf")
+fontFile = os.path.join(os.path.dirname(__file__), "IBMPlexMono-Bold.otf")
 # get a font
 fontT = ImageFont.truetype(fontFile, 8)
 
@@ -148,7 +149,12 @@ if __name__ == "__main__":
             #     quiet=quiet,
             # )
             out_dir = f"dist/logos/{key}"
-            subprocess.call("/usr/local/bin/rclone copy teia-remote:'{}' --drive-shared-with-me {} ".format(value, out_dir), shell=True)
+            subprocess.call(
+                "rclone copy teia-remote:{} --drive-shared-with-me {} ".format(
+                    value, out_dir
+                ),
+                shell=True,
+            )
             # rename to lowercase
             files = [x for x in os.listdir(out_dir) if x.endswith(".png")]
             for file in files:
@@ -192,8 +198,12 @@ if __name__ == "__main__":
             )
             inew.save(f"dist/contact-sheet/{key}.png")
 
-    logos_light = [x for x in os.listdir("dist/logos/light") if x.endswith(".png")]
-    logos_dark = [x for x in os.listdir("dist/logos/dark") if x.endswith(".png")]
+    logos_light = [
+        x for x in os.listdir("dist/logos/light") if x.endswith(".png")
+    ]
+    logos_dark = [
+        x for x in os.listdir("dist/logos/dark") if x.endswith(".png")
+    ]
 
     # same lenght
     assert len(logos_light) == len(logos_dark)
