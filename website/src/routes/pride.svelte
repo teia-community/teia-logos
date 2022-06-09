@@ -7,4 +7,4 @@
   import { raw_url } from "$lib/constants";
 </script>
 
-<LogoViewer theme_based fetch_url={`${raw_url}/logos.json`} />
+<LogoViewer root="pride" fetch_url={`${raw_url}/logos_pride.json`} />
