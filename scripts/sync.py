@@ -1,7 +1,6 @@
 """ Teia logos submissions checker
 
 Usage:
-    [NOT USABLE WITHOUT TEIA's GOOGLE RIGHTS]
     install rclone
     pip install pillow
     python sync.py <OPTIONS>
@@ -210,14 +209,16 @@ if __name__ == "__main__":
         x for x in os.listdir("dist/logos/pride") if x.endswith(".png")
     ]
 
+    logos_dark.sort()
+    logos_light.sort()
+    logos_pride.sort()
+
     # same lenght
     assert len(logos_light) == len(logos_dark)
 
     # matchig counterpart
     assert logos_light == logos_dark
 
-    logos_dark.sort()
-    logos_pride.sort()
     now = datetime.datetime.now()
 
     with open("dist/logos.json", "w") as logo:
