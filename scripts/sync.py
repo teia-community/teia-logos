@@ -16,9 +16,11 @@ Author:
 """
 import subprocess
 
+import os
+
 # import gdown
 import sys
-import os
+from pathlib import Path
 import json
 from PIL import Image
 from PIL import ImageFont
@@ -26,10 +28,12 @@ from PIL import ImageDraw
 from PIL import ImageOps
 import datetime
 
+from jinja2 import Undefined
 
-fontFile = os.path.join(os.path.dirname(__file__), "IBMPlexMono-Bold.otf")
+
+fontFile = Path(__file__).parent / "IBMPlexMono-Bold.otf"
 # get a font
-fontT = ImageFont.truetype(fontFile, 8)
+fontT = ImageFont.truetype(fontFile.as_posix(), 8)
 
 
 def make_contact_sheet(
@@ -98,24 +102,23 @@ def make_contact_sheet(
             #     outline=None,
             #     width=0,
             # )
-            name = os.path.basename(name)
-            new_text = ".".join(name.split(".")[:-1])
+            name = Path(name).stem
 
             # inew.paste(img, bbox)
-            w, h = d.textsize(new_text)
+            # w, h = d.textsize(name)
 
-            d.text(
-                (redu / 2 + ((img.width - redu) - w) / 2, img.height - 10),
-                new_text,
-                font=fontT,
-                fill="white" if bg == "black" else "black",
-                align="center",
-            )
+            # d.text(
+            #     (redu / 2 + ((img.width - redu) - w) / 2, img.height - 10),
+            #     name,
+            #     font=fontT,
+            #     fill="white" if bg == "black" else "black",
+            #     align="center",
+            # )
 
             # Paste the photo into the output image
             inew.paste(img, bbox, img.convert("RGBA"))
             # Paste the text into the output image
-            inew.paste(info_image, bbox, info_image.convert("RGBA"))
+            # inew.paste(info_image, bbox, info_image.convert("RGBA"))
     return inew
 
 
@@ -156,10 +159,12 @@ if __name__ == "__main__":
                 shell=True,
             )
             # rename to lowercase
-            files = [x for x in os.listdir(out_dir) if x.endswith(".png")]
+            files = [x for x in Path(out_dir).glob("*.png")]
             for file in files:
-                filename = os.path.join(out_dir, file.lower())
-                os.rename(os.path.join(out_dir, file), filename)
+                filename = Path(out_dir) / file.name.replace(" ", "_").lower()
+                os.rename(
+                    (Path(out_dir) / file.name).as_posix(), filename.as_posix()
+                )
                 if "-r" in sys.argv:
                     # breaks apngs
                     im = Image.open(filename)
@@ -172,11 +177,7 @@ if __name__ == "__main__":
     if "-c" in sys.argv:
         for key, _ in urls.items():
             out_dir = f"dist/logos/{key}"
-            files = [
-                os.path.join(out_dir, x)
-                for x in os.listdir(out_dir)
-                if x.endswith(".png")
-            ]
+            files = [x for x in Path(out_dir).glob("*.png")]
 
             photow, photoh = 256, 64
             margins = [5, 5, 5, 5]
@@ -198,16 +199,10 @@ if __name__ == "__main__":
             )
             inew.save(f"dist/contact-sheet/{key}.png")
 
-    logos_light = [
-        x for x in os.listdir("dist/logos/light") if x.endswith(".png")
-    ]
-    logos_dark = [
-        x for x in os.listdir("dist/logos/dark") if x.endswith(".png")
-    ]
+    logos_light = [x for x in Path("dist/logos/light").glob("*png")]
+    logos_dark = [x for x in Path("dist/logos/dark").glob("*png")]
 
-    logos_pride = [
-        x for x in os.listdir("dist/logos/pride") if x.endswith(".png")
-    ]
+    logos_pride = [x for x in Path("dist/logos/pride").glob("*png")]
 
     logos_dark.sort()
     logos_light.sort()
@@ -217,16 +212,18 @@ if __name__ == "__main__":
     assert len(logos_light) == len(logos_dark)
 
     # matchig counterpart
-    assert logos_light == logos_dark
+    assert [x.name for x in logos_light] == [x.name for x in logos_dark]
 
     now = datetime.datetime.now()
 
     with open("dist/logos.json", "w") as logo:
         json.dump(
             {
-                "logos": logos_dark,
+                "logos": [x.name for x in logos_dark],
                 "sync_date": now.strftime("%Y-%m-%d %H:%M:%S"),
                 "count": len(logos_dark),
+                "themable": True,
+                "collection": None,
             },
             logo,
         )
@@ -234,9 +231,11 @@ if __name__ == "__main__":
     with open("dist/logos_pride.json", "w") as logo:
         json.dump(
             {
-                "logos": logos_pride,
+                "logos": [x.name for x in logos_pride],
                 "sync_date": now.strftime("%Y-%m-%d %H:%M:%S"),
                 "count": len(logos_pride),
+                "themable": False,
+                "collection": "pride",
             },
             logo,
         )
