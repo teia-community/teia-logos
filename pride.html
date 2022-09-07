@@ -9,28 +9,34 @@
     <meta property="og:image:width" content="1197" data-svelte="svelte-12jub20">
     <meta property="og:image:height" content="1269" data-svelte="svelte-12jub20">
     <meta property="og:image:alt" data-svelte="svelte-12jub20">
-	<link rel="stylesheet" href="/teia-logos/_app/immutable/assets/pages/__layout.svelte-74f22e23.css">
-	<link rel="stylesheet" href="/teia-logos/_app/immutable/assets/LogoViewer-ae59cc5b.css">
-	<link rel="modulepreload" href="/teia-logos/_app/immutable/start-c1b3990f.js">
-	<link rel="modulepreload" href="/teia-logos/_app/immutable/chunks/index-701a32fa.js">
-	<link rel="modulepreload" href="/teia-logos/_app/immutable/chunks/index-606b4d1c.js">
-	<link rel="modulepreload" href="/teia-logos/_app/immutable/pages/__layout.svelte-51be9baa.js">
-	<link rel="modulepreload" href="/teia-logos/_app/immutable/chunks/store-efc22d50.js">
-	<link rel="modulepreload" href="/teia-logos/_app/immutable/pages/pride.svelte-6ab0a35b.js">
-	<link rel="modulepreload" href="/teia-logos/_app/immutable/chunks/LogoViewer-3bdcfe0d.js">
+	<link href="/teia-logos/_app/immutable/assets/_layout-f3eeb95b.css" rel="stylesheet">
+	<link href="/teia-logos/_app/immutable/assets/LogoViewer-7b85877c.css" rel="stylesheet">
+	<link rel="modulepreload" href="/teia-logos/_app/immutable/start-966c9dc9.js">
+	<link rel="modulepreload" href="/teia-logos/_app/immutable/chunks/singletons-2241f4ca.js">
+	<link rel="modulepreload" href="/teia-logos/_app/immutable/components/pages/_layout.svelte-f8eb59d3.js">
+	<link rel="modulepreload" href="/teia-logos/_app/immutable/chunks/store-104f7d2d.js">
+	<link rel="modulepreload" href="/teia-logos/_app/immutable/modules/pages/_layout.js-7b9cbfbc.js">
+	<link rel="modulepreload" href="/teia-logos/_app/immutable/chunks/_layout-8d2a742b.js">
+	<link rel="modulepreload" href="/teia-logos/_app/immutable/components/pages/pride/_page.svelte-8ac90d8e.js">
+	<link rel="modulepreload" href="/teia-logos/_app/immutable/chunks/LogoViewer-708e8e85.js">
+	<link rel="modulepreload" href="/teia-logos/_app/immutable/chunks/stores-4cff7c92.js">
   </head>
   <body>
     <div id="svelte">
 
 
 
-<header class="svelte-108cgdv"><button id="dark_toggle">dark</button>
+<header><div class="flex"><button id="dark_toggle">dark</button></div>
+  <nav><div><p id="pack">packs</p>
+      <div class="flex packs"><button id="main">Main</button>
+        <button id="pride">Pride</button></div></div></nav>
 </header>
 <main class="svelte-u19t95">
 
 
 
-<div class="container svelte-1tzmij1">
+<h1 class="svelte-dfalv7">Pride</h1>
+<div class="container svelte-dfalv7">
 </div></main>
 
 <footer class="svelte-u19t95"><p>list of logos <a href="https://docs.google.com/forms/d/1qEsPN5njEE9fNdSM1zjetIYGYTSuMpjPl446nG1FvNY/edit" class="svelte-u19t95">submitted</a>
@@ -39,23 +45,25 @@
 </footer>
 
 
-		<script type="module" data-sveltekit-hydrate="a5yg6y">
-		import { start } from "/teia-logos/_app/immutable/start-c1b3990f.js";
+		<script type="module" data-sveltekit-hydrate="h0z9na">
+		import { start } from "/teia-logos/_app/immutable/start-966c9dc9.js";
+
 		start({
-			target: document.querySelector('[data-sveltekit-hydrate="a5yg6y"]').parentNode,
-			paths: {"base":"/teia-logos","assets":"/teia-logos"},
-			session: {},
-			route: true,
-			spa: false,
-			trailing_slash: "never",
+			env: {},
 			hydrate: {
 				status: 200,
 				error: null,
-				nodes: [0, 3],
+				node_ids: [0, 3],
 				params: {},
-				routeId: "pride"
-			}
+				routeId: "pride",
+				data: (function(a){return [a,a]}(null)),
+				form: null
+			},
+			paths: {"base":"/teia-logos","assets":"/teia-logos"},
+			target: document.querySelector('[data-sveltekit-hydrate="h0z9na"]').parentNode,
+			trailing_slash: "never"
 		});
-	</script></div>
+	</script>
+	</div>
   </body>
 </html>
