@@ -1,6 +1,6 @@
 <script>
   import { goto } from "$app/navigation";
-
+  import { base } from "$app/paths";
   // import { page } from '$app/stores';
   import { theme } from "$lib/store";
   $: switchTheme = $theme === "dark" ? "light" : "dark";
@@ -16,8 +16,10 @@
     <div>
       <p id="pack">packs</p>
       <div class="flex packs">
-        <button id="main" on:click={() => goto("/")}>Main</button>
-        <button id="pride" on:click={() => goto("/pride")}> Pride</button>
+        <button id="main" on:click={() => goto(`${base}/`)}>Main</button>
+        <button id="pride" on:click={() => goto(`${base}/pride`)}>
+          Pride</button
+        >
       </div>
     </div>
   </nav>

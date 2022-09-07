@@ -10,8 +10,8 @@ const config = {
 	kit: {
 		adapter: ghPages ? adapterStatic() :  adapterAuto(),
 		paths: {
-      // assets: ghPages ? 'https://raw.githubusercontent.com/teia-community/teia-logos/gh-pages': '',
-      base: ghPages ? '/teia-logos' : '',
+      	// assets: ghPages ? 'https://raw.githubusercontent.com/teia-community/teia-logos/gh-pages': '',
+      	base: ghPages ? '/teia-logos' : '',
     },
 	}
 
