@@ -28,9 +28,6 @@ from PIL import ImageDraw
 from PIL import ImageOps
 import datetime
 
-from jinja2 import Undefined
-
-
 fontFile = Path(__file__).parent / "IBMPlexMono-Bold.otf"
 # get a font
 fontT = ImageFont.truetype(fontFile.as_posix(), 8)
