@@ -13,6 +13,7 @@
   let logos = [];
   let sync_date = "xx-xx-xx";
 
+  export let label = "";
   export let fetch_url;
   export let root = "";
   export let theme_based = false;
@@ -88,6 +89,7 @@
   ogLanguage="en_US"
 />
 
+<h1>{label}</h1>
 <div class="container">
   {#each current_logos as logo (logo)}
     <Image src={logo} alt={logo} {loading} largestBorder="128" />
@@ -95,6 +97,10 @@
 </div>
 
 <style>
+  h1 {
+    font-size: 2em;
+    font-weight: 800;
+  }
   .container {
     display: flex;
     flex-direction: row;
