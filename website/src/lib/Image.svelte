@@ -5,6 +5,7 @@
   export let loading = "eager";
   let width: number;
   let height: number;
+  let loaded = false;
 
   let size = {
     width: 0,
@@ -25,8 +26,28 @@
       width = (size.width / size.height) * largestBorder;
       height = largestBorder;
     }
+    loaded = true;
   };
 </script>
 
-<img on:click on:load={onImgLoad} {height} {width} {loading} {src} {alt} />
+<img
+  class:hidden={!loaded}
+  on:click
+  on:load={onImgLoad}
+  {height}
+  {width}
+  {loading}
+  {src}
+  {alt}
+/>
+
 <!-- <p>{size.height}x{size.width} {largestBorder}</p> -->
+<style>
+  img {
+    opacity: 1;
+    transition: opacity 1s;
+  }
+  .hidden {
+    opacity: 0;
+  }
+</style>
