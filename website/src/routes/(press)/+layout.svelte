@@ -1,6 +1,6 @@
 <script>
   import Header from "$lib/header/Header.svelte";
-  import "../app.css";
+  import "../../app.css";
   import { theme } from "$lib/store";
   import { onMount } from "svelte";
 
@@ -27,32 +27,7 @@
   <slot />
 </main>
 
-<footer>
-  <p>
-    list of logos <a
-      href="https://docs.google.com/forms/d/1qEsPN5njEE9fNdSM1zjetIYGYTSuMpjPl446nG1FvNY/edit"
-      >submitted</a
-    >
-    for the <a href="https://teia.art">teia.art</a> tezos platform
-  </p>
-</footer>
-
 <style>
-  :global(body) {
-    background-color: #ffffff;
-    color: #000000;
-    transition: background-color 0.3s;
-  }
-  :global(body.dark) {
-    background-color: #000000;
-    color: #ffffff;
-  }
-  :global(p) {
-    color: black;
-  }
-  :global(.dark p) {
-    color: white;
-  }
   main {
     flex: 1;
     display: flex;

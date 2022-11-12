@@ -10,19 +10,41 @@
   import OpenGraph from "$lib/OpenGraph.svelte";
   import { page } from "$app/stores";
   import { raw_url } from "$lib/constants";
+  import Checkbox from "./components/Checkbox.svelte";
+
   let logos = [];
   let sync_date = "xx-xx-xx";
+  let logos_dark = [];
+  let logos_light = [];
+  let current_logos = [];
 
+  let selected = null;
+  let label_index = "";
+  let show_border = true;
+  /* Properties */
   export let label = "";
   export let fetch_url;
   export let root = "";
   export let theme_based = false;
   export let loading = "eager";
 
-  let logos_dark = [];
-  let logos_light = [];
+  const cycle = (count) => {
+    let id = current_logos.indexOf(selected_img);
+    // label_index = `${id}/${current_logos.length}`;
+    let new_id = (id + count) % current_logos.length;
+    selected = current_logos[new_id].split("/").pop();
+  };
 
-  let current_logos = [];
+  /* Reactive */
+  $: label_name = selected ? selected.replace(raw_url, "") : null;
+  $: selected_img = selected
+    ? current_logos[current_logos.findIndex((e) => e.includes(selected))]
+    : null;
+  $: label_index = selected_img
+    ? `${current_logos.indexOf(selected_img)}/${current_logos.length}`
+    : "";
+
+  const deselect = () => (selected = null);
 
   onMount(async () => {
     let logos_fetch = await (await fetch(fetch_url)).json();
@@ -76,6 +98,13 @@
 
 <svelte:head>
   <title>Logo - Viewer</title>
+  {#if selected}
+    <style>
+      body {
+        overflow: hidden;
+      }
+    </style>
+  {/if}
 </svelte:head>
 
 <OpenGraph
@@ -89,10 +118,42 @@
   ogLanguage="en_US"
 />
 
+<!-- LightBox -->
+{#if selected}
+  <div class="lightbox_container">
+    <p>{label_name}</p>
+    <div class="lightbox">
+      <button on:click={() => cycle(-1)}>{"<"}</button>
+      <Image
+        src={selected_img}
+        alt={selected}
+        {loading}
+        bordered={show_border}
+        largestBorder="180"
+      />
+      <button on:click={() => cycle(1)}>{">"}</button>
+    </div>
+    <p>{label_index}</p>
+  </div>
+  <button id="close" on:click={deselect}>close [X]</button>
+  <div id="lightbox_tools">
+    <Checkbox label="Show Borders" bind:value={show_border} />
+  </div>
+{/if}
+
 <h1>{label}</h1>
+<!-- Logos Container -->
 <div class="container">
   {#each current_logos as logo (logo)}
-    <Image src={logo} alt={logo} {loading} largestBorder="128" />
+    <Image
+      src={logo}
+      alt={logo}
+      on:click={(sel) => {
+        selected = sel.target.src.split("/").pop();
+      }}
+      {loading}
+      largestBorder="128"
+    />
   {/each}
 </div>
 
@@ -101,11 +162,47 @@
     font-size: 2em;
     font-weight: 800;
   }
+  button {
+    color: var(--text-color);
+    background-color: transparent;
+    border: none;
+    padding: 1em;
+  }
+  #close {
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
   .container {
     display: flex;
+    width: 85%;
+    margin: auto;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+  }
+  .lightbox_container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #lightbox_tools {
+    position: fixed;
+    bottom: 0;
+  }
+  .lightbox {
+    display: flex;
+    width: 100%;
+
+    align-items: center;
+    justify-content: space-around;
   }
 </style>

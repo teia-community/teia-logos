@@ -6,17 +6,22 @@
   $: switchTheme = $theme === "dark" ? "light" : "dark";
 </script>
 
+<div class="flex_dark">
+  <button id="dark_toggle" on:click={() => ($theme = switchTheme)}>
+    {switchTheme}</button
+  >
+</div>
 <header>
-  <div class="flex">
-    <button id="dark_toggle" on:click={() => ($theme = switchTheme)}>
-      {switchTheme}</button
-    >
-  </div>
-  <nav>
+  <nav id="menu">
     <div>
-      <p id="pack">packs</p>
       <div class="flex packs">
-        <button id="main" on:click={() => goto(`${base}/`)}>Main</button>
+        <button id="main" on:click={() => goto(`${base}/press`)}>press</button>
+      </div>
+      <p id="pack">logo packs</p>
+      <div class="flex packs">
+        <button id="main" on:click={() => goto(`${base}/`)}
+          >Logos Rotation</button
+        >
         <button id="pride" on:click={() => goto(`${base}/pride`)}>
           Pride</button
         >
@@ -26,6 +31,18 @@
 </header>
 
 <style global>
+  #menu {
+    background-color: var(--bg-color);
+  }
+  .flex_dark {
+    z-index: 100;
+    position: fixed;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
   .flex {
     display: flex;
     margin: 0;
@@ -41,12 +58,14 @@
     position: fixed;
     width: 100vw;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    pointer-events: none;
   }
   .packs {
     margin: 1em;
   }
   button {
+    pointer-events: all;
     border: 0px solid #ccc;
     border-radius: 0px;
     cursor: pointer;
@@ -63,6 +82,7 @@
   }
   #dark_toggle {
     padding: 1em;
+    z-index: 100;
   }
 
   button {

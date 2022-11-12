@@ -3,6 +3,7 @@
   export let src: string;
   export let alt: string;
   export let loading = "eager";
+  export let bordered = false;
   let width: number;
   let height: number;
   let loaded = false;
@@ -31,7 +32,8 @@
 </script>
 
 <img
-  class:hidden={!loaded}
+  class:loaded
+  class:bordered
   on:click
   on:load={onImgLoad}
   {height}
@@ -44,10 +46,13 @@
 <!-- <p>{size.height}x{size.width} {largestBorder}</p> -->
 <style>
   img {
-    opacity: 1;
-    transition: opacity 1s;
-  }
-  .hidden {
     opacity: 0;
+    /* transition: opacity 0.2s; */
+  }
+  .bordered {
+    border: 1px var(--text-color) solid;
+  }
+  .loaded {
+    opacity: 1;
   }
 </style>

@@ -1,9 +1,10 @@
-@import "@fontsource/fira-mono";
-@import "@fontsource/ibm-plex-mono";
+/* @import "@fontsource/fira-mono"; */
+/* @import "@fontsource/ibm-plex-mono"; */
+@import "@fontsource/iosevka";
 
 :root {
-  font-family: "IBM Plex Mono", monospace;
-  --font-mono: "Fira Mono", monospace;
+  font-family: "Iosevka", monospace;
+  --font-mono: "Iosevka", monospace;
   --pure-white: #ffffff;
   --primary-color: #b9c6d2;
   --secondary-color: #d0dde9;
@@ -14,11 +15,20 @@
   --background-without-opacity: rgba(255, 255, 255, 0.7);
   --column-width: 42rem;
   --column-margin-top: 4rem;
+
+  --bg-color: white;
+}
+
+:root .dark {
+  --text-color: white;
+  --bg-color: black;
 }
 
 body {
   min-height: 100vh;
   margin: 0;
+  color: var(--text-color);
+  background-color: var(--bg-color);
 }
 main {
   background-color: var(--theme-color);
