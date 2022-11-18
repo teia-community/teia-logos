@@ -9,7 +9,7 @@
   import { onMount } from "svelte";
   import OpenGraph from "$lib/OpenGraph.svelte";
   import { page } from "$app/stores";
-  import { raw_url } from "$lib/constants";
+  import { raw_url, submission_form } from "$lib/constants";
   import Checkbox from "./components/Checkbox.svelte";
 
   let logos = [];
@@ -22,16 +22,22 @@
   let label_index = "";
   let show_border = true;
   /* Properties */
-  export let label = "";
   export let fetch_url;
   export let root = "";
   export let theme_based = false;
   export let loading = "eager";
 
+  let lb_size = 200;
+
   const cycle = (count) => {
+    if (selected == undefined) {
+      return;
+    }
     let id = current_logos.indexOf(selected_img);
     // label_index = `${id}/${current_logos.length}`;
     let new_id = (id + count) % current_logos.length;
+    new_id = new_id == -1 ? current_logos.length - 1 : new_id;
+    console.log(new_id);
     selected = current_logos[new_id].split("/").pop();
   };
 
@@ -41,10 +47,43 @@
     ? current_logos[current_logos.findIndex((e) => e.includes(selected))]
     : null;
   $: label_index = selected_img
-    ? `${current_logos.indexOf(selected_img)}/${current_logos.length}`
+    ? `${current_logos.indexOf(selected_img) + 1}/${current_logos.length}`
     : "";
 
   const deselect = () => (selected = null);
+
+  function onKeyDown(e) {
+    console.log(e.keyCode);
+    switch (e.keyCode) {
+      // left-arrow
+      case 37:
+        cycle(-1);
+        break;
+      //right-arrow
+      case 39:
+        cycle(1);
+        break;
+      // esc
+      case 27:
+        deselect();
+        break;
+      // up
+      case 38:
+        lb_size++;
+        break;
+      // down
+      case 40:
+        lb_size--;
+        break;
+      // b
+      case 66:
+        show_border = !show_border;
+        break;
+      // t
+      case 84:
+        break;
+    }
+  }
 
   onMount(async () => {
     let logos_fetch = await (await fetch(fetch_url)).json();
@@ -119,6 +158,7 @@
 />
 
 <!-- LightBox -->
+<svelte:window on:keydown|preventDefault={onKeyDown} />
 {#if selected}
   <div class="lightbox_container">
     <p>{label_name}</p>
@@ -129,7 +169,7 @@
         alt={selected}
         {loading}
         bordered={show_border}
-        largestBorder="180"
+        largestBorder={lb_size}
       />
       <button on:click={() => cycle(1)}>{">"}</button>
     </div>
@@ -141,7 +181,6 @@
   </div>
 {/if}
 
-<h1>{label}</h1>
 <!-- Logos Container -->
 <div class="container">
   {#each current_logos as logo (logo)}
@@ -157,11 +196,14 @@
   {/each}
 </div>
 
+<footer>
+  <p>
+    list of logos <a href={submission_form}>submitted</a>
+    for the <a href="https://teia.art">teia.art</a> tezos platform
+  </p>
+</footer>
+
 <style>
-  h1 {
-    font-size: 2em;
-    font-weight: 800;
-  }
   button {
     color: var(--text-color);
     background-color: transparent;
@@ -175,12 +217,16 @@
   }
   .container {
     display: flex;
-    width: 85%;
-    margin: auto;
+    width: 90%;
+    /*margin: auto;*/
+    margin-left: auto;
+    margin-right: auto;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    max-height: 60vh;
+    overflow-y: auto;
   }
   .lightbox_container {
     position: fixed;
@@ -196,7 +242,8 @@
   }
   #lightbox_tools {
     position: fixed;
-    bottom: 0;
+    bottom: 2em;
+    left: 2em;
   }
   .lightbox {
     display: flex;
@@ -204,5 +251,23 @@
 
     align-items: center;
     justify-content: space-around;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+
+  footer a {
+    font-weight: 400;
+  }
+
+  @media (min-width: 480px) {
+    footer {
+      padding: 40px 0;
+    }
   }
 </style>

@@ -1,6 +1,6 @@
 <script>
   import Header from "$lib/header/Header.svelte";
-  import "../../app.css";
+  import "../app.css";
   import { theme } from "$lib/store";
   import { onMount } from "svelte";
 
@@ -19,9 +19,20 @@
       }
     }
   });
+
+  function onKeyDown(e) {
+    console.log(e.keyCode);
+    switch (e.keyCode) {
+      // t
+      case 84:
+        $theme = $theme === "dark" ? "light" : "dark";
+        break;
+    }
+  }
 </script>
 
-<svelte:body />
+<svelte:window on:keydown|preventDefault={onKeyDown} />
+
 <Header />
 <main>
   <slot />
@@ -36,24 +47,7 @@
     width: 100%;
     max-width: 1024px;
     margin: 0 auto;
+    margin-top: 4em;
     box-sizing: border-box;
-  }
-
-  footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-  }
-
-  footer a {
-    font-weight: bold;
-  }
-
-  @media (min-width: 480px) {
-    footer {
-      padding: 40px 0;
-    }
   }
 </style>

@@ -23,6 +23,32 @@
   --bg-color: black;
 }
 
+::selection {
+  color: var(--bg-color);
+  background: var(--text-color);
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  border: 1px solid black;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+  border: 1px solid var(--text-color);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--text-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 @font-face {
   font-family: "iosevka-extended";
   font-display: swap;
