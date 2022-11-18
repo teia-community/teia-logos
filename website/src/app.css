@@ -1,10 +1,9 @@
 /* @import "@fontsource/fira-mono"; */
 /* @import "@fontsource/ibm-plex-mono"; */
-@import "@fontsource/iosevka";
 
 :root {
-  font-family: "Iosevka", monospace;
-  --font-mono: "Iosevka", monospace;
+  font-family: "iosevka-extended", monospace;
+  --font-mono: "iosevka-extended", monospace;
   --pure-white: #ffffff;
   --primary-color: #b9c6d2;
   --secondary-color: #d0dde9;
@@ -22,6 +21,16 @@
 :root .dark {
   --text-color: white;
   --bg-color: black;
+}
+
+@font-face {
+  font-family: "iosevka-extended";
+  font-display: swap;
+  font-weight: 400;
+  font-stretch: expanded;
+  font-style: normal;
+  src: url("fonts/iosevka-extended.woff2") format("woff2"),
+    url("fonts/iosevka-extended.ttf") format("truetype");
 }
 
 body {
@@ -60,7 +69,7 @@ p {
 }
 
 p {
-  line-height: 1.5;
+  line-height: 1;
 }
 
 a {

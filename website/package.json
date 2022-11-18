@@ -26,8 +26,5 @@
     "typescript": "^4.8.4",
     "vite": "^3.2.3"
   },
-  "type": "module",
-  "dependencies": {
-    "@fontsource/iosevka": "^4.5.4"
-  }
+  "type": "module"
 }
