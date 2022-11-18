@@ -8,7 +8,7 @@ packages = [{include = "teia_logos"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-Pillow = "^9.2.0"
+Pillow = "^9.3.0"
 
 
 [build-system]
