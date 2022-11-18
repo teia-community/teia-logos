@@ -3,6 +3,7 @@
   import "../../app.css";
   import { theme } from "$lib/store";
   import { onMount } from "svelte";
+  import { submission_form } from "$lib/constants";
 
   let document;
 
@@ -29,10 +30,7 @@
 
 <footer>
   <p>
-    list of logos <a
-      href="https://docs.google.com/forms/d/1qEsPN5njEE9fNdSM1zjetIYGYTSuMpjPl446nG1FvNY/edit"
-      >submitted</a
-    >
+    list of logos <a href={submission_form}>submitted</a>
     for the <a href="https://teia.art">teia.art</a> tezos platform
   </p>
 </footer>
