@@ -11,7 +11,7 @@
       class="download"
       target="_blank"
       rel="noreferrer"
-      href="https://github.com/teia-community/teia-logos/blob/mel/rework-site/dist/classic.zip"
+      href="https://github.com/teia-community/teia-logos/raw/main/dist/classic.zip"
       >Download (svg + png)</a
     >
     <!-- <img src={pfp} width="120px" alt="teia pfp" /> -->
