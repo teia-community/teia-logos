@@ -55,8 +55,8 @@
   font-weight: 400;
   font-stretch: expanded;
   font-style: normal;
-  src: url("fonts/iosevka-extended.woff2") format("woff2"),
-    url("fonts/iosevka-extended.ttf") format("truetype");
+  src: url("../static/fonts/iosevka-extended.woff2") format("woff2"),
+    url("../static/fonts/iosevka-extended.ttf") format("truetype");
 }
 
 body {

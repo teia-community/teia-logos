@@ -39,7 +39,7 @@
     width: 340px;
   }
   h1 {
-    font-family: "iosevka-extended";
+    font-weight: 600;
   }
   h2 {
     font-weight: 600;
