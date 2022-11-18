@@ -19,40 +19,26 @@
       }
     }
   });
+
+  function onKeyDown(e) {
+    console.log(e.keyCode);
+    switch (e.keyCode) {
+      // t
+      case 84:
+        $theme = $theme === "dark" ? "light" : "dark";
+        break;
+    }
+  }
 </script>
 
-<svelte:body />
+<svelte:window on:keydown|preventDefault={onKeyDown} />
+
 <Header />
 <main>
   <slot />
 </main>
 
-<footer>
-  <p>
-    list of logos <a
-      href="https://docs.google.com/forms/d/1qEsPN5njEE9fNdSM1zjetIYGYTSuMpjPl446nG1FvNY/edit"
-      >submitted</a
-    >
-    for the <a href="https://teia.art">teia.art</a> tezos platform
-  </p>
-</footer>
-
 <style>
-  :global(body) {
-    background-color: #ffffff;
-    color: #000000;
-    transition: background-color 0.3s;
-  }
-  :global(body.dark) {
-    background-color: #000000;
-    color: #ffffff;
-  }
-  :global(p) {
-    color: black;
-  }
-  :global(.dark p) {
-    color: white;
-  }
   main {
     flex: 1;
     display: flex;
@@ -61,24 +47,7 @@
     width: 100%;
     max-width: 1024px;
     margin: 0 auto;
+    margin-top: 4em;
     box-sizing: border-box;
-  }
-
-  footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-  }
-
-  footer a {
-    font-weight: bold;
-  }
-
-  @media (min-width: 480px) {
-    footer {
-      padding: 40px 0;
-    }
   }
 </style>

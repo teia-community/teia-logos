@@ -1,9 +1,9 @@
-@import "@fontsource/fira-mono";
-@import "@fontsource/ibm-plex-mono";
+/* @import "@fontsource/fira-mono"; */
+/* @import "@fontsource/ibm-plex-mono"; */
 
 :root {
-  font-family: "IBM Plex Mono", monospace;
-  --font-mono: "Fira Mono", monospace;
+  font-family: "iosevka-extended", monospace;
+  --font-mono: "iosevka-extended", monospace;
   --pure-white: #ffffff;
   --primary-color: #b9c6d2;
   --secondary-color: #d0dde9;
@@ -14,11 +14,56 @@
   --background-without-opacity: rgba(255, 255, 255, 0.7);
   --column-width: 42rem;
   --column-margin-top: 4rem;
+
+  --bg-color: white;
+}
+
+:root .dark {
+  --text-color: white;
+  --bg-color: black;
+}
+
+::selection {
+  color: var(--bg-color);
+  background: var(--text-color);
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  border: 1px solid black;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+  border: 1px solid var(--text-color);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--text-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@font-face {
+  font-family: "iosevka-extended";
+  font-display: swap;
+  font-weight: 400;
+  font-stretch: expanded;
+  font-style: normal;
+  src: url("fonts/iosevka-extended.woff2") format("woff2"),
+    url("fonts/iosevka-extended.ttf") format("truetype");
 }
 
 body {
   min-height: 100vh;
   margin: 0;
+  color: var(--text-color);
+  background-color: var(--bg-color);
 }
 main {
   background-color: var(--theme-color);
@@ -50,7 +95,7 @@ p {
 }
 
 p {
-  line-height: 1.5;
+  line-height: 1;
 }
 
 a {

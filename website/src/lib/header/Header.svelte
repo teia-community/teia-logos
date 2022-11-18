@@ -1,24 +1,34 @@
 <script>
   import { goto } from "$app/navigation";
   import { base } from "$app/paths";
-  // import { page } from '$app/stores';
   import { theme } from "$lib/store";
+  import Pfp from "../../../../dist/teia-black.svg?component";
+
   $: switchTheme = $theme === "dark" ? "light" : "dark";
 </script>
 
+<div class="flex_dark">
+  <svg
+    on:click={() => ($theme = switchTheme)}
+    viewBox="0 0 100 100"
+    fill="var(--text-color)"
+    width="32"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="50" cy="50" r="50" />
+  </svg>
+  <!-- <button id="dark_toggle" on:click={() => ($theme = switchTheme)}>
+    {switchTheme}</button
+  > -->
+</div>
 <header>
-  <div class="flex">
-    <button id="dark_toggle" on:click={() => ($theme = switchTheme)}>
-      {switchTheme}</button
-    >
-  </div>
-  <nav>
-    <div>
-      <p id="pack">packs</p>
+  <nav id="menu">
+    <div id="menu_cont">
+      <Pfp fill="var(--text-color)" width="64" />
       <div class="flex packs">
-        <button id="main" on:click={() => goto(`${base}/`)}>Main</button>
-        <button id="pride" on:click={() => goto(`${base}/pride`)}>
-          Pride</button
+        <button id="main" on:click={() => goto(`${base}/press`)}>press</button>
+        <button id="main" on:click={() => goto(`${base}/`)}
+          >Logos Rotation</button
         >
       </div>
     </div>
@@ -26,6 +36,22 @@
 </header>
 
 <style global>
+  #menu_cont {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+  }
+  .flex_dark {
+    z-index: 100;
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
   .flex {
     display: flex;
     margin: 0;
@@ -39,19 +65,23 @@
   }
   header {
     position: fixed;
-    width: 100vw;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    pointer-events: none;
+    user-select: none;
   }
   .packs {
     margin: 1em;
   }
   button {
+    pointer-events: all;
+    user-select: none;
     border: 0px solid #ccc;
     border-radius: 0px;
     cursor: pointer;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 600;
     padding: 0;
     margin: 0;
   }
@@ -63,6 +93,8 @@
   }
   #dark_toggle {
     padding: 1em;
+    z-index: 100;
+    font-size: 0.5em;
   }
 
   button {

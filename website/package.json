@@ -8,23 +8,24 @@
     "preview": "svelte-kit preview"
   },
   "devDependencies": {
-    "@fontsource/ibm-plex-mono": "^4.5.11",
-    "@fontsource/fira-mono": "^4.5.9",
+    "@fontsource/fira-mono": "^4.5.10",
+    "@fontsource/ibm-plex-mono": "^4.5.12",
+    "@poppanator/sveltekit-svg": "^1.1.0",
     "@sveltejs/adapter-auto": "next",
-    "@sveltejs/adapter-static": "^1.0.0-next.42",
+    "@sveltejs/adapter-static": "next",
     "@sveltejs/kit": "next",
-    "autoprefixer": "^10.4.8",
-    "cssnano": "^5.1.13",
-    "cssnano-preset-advanced": "^5.3.8",
+    "autoprefixer": "^10.4.13",
+    "cssnano": "^5.1.14",
+    "cssnano-preset-advanced": "^5.3.9",
     "figlet": "^1.5.2",
-    "postcss": "^8.4.16",
+    "postcss": "^8.4.19",
     "postcss-import": "^15.0.0",
-    "postcss-scss": "^4.0.4",
-    "svelte": "^3.50.0",
+    "postcss-scss": "^4.0.5",
+    "sass": "^1.56.1",
+    "svelte": "^3.53.1",
     "svelte-preprocess": "^4.10.7",
-    "typescript": "^4.8.2",
-    "vite": "^3.1.0"
+    "typescript": "^4.8.4",
+    "vite": "^3.2.3"
   },
-  "type": "module",
-  "dependencies": {}
+  "type": "module"
 }
