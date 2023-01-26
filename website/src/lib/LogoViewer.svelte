@@ -20,7 +20,7 @@
 
   let selected = null;
   let label_index = "";
-  let show_border = true;
+  let show_border = false;
   /* Properties */
   export let fetch_url;
   export let root = "";
@@ -225,7 +225,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    max-height: 60vh;
+    height: 100%;
     overflow-y: auto;
   }
   .lightbox_container {

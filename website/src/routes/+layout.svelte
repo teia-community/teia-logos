@@ -45,9 +45,11 @@
     flex-direction: column;
     padding: 1rem;
     width: 100%;
-    max-width: 1024px;
+    max-width: 1200px;
     margin: 0 auto;
-    margin-top: 4em;
+    margin-top: 1em;
     box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
   }
 </style>

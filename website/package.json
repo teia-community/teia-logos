@@ -10,7 +10,7 @@
   "devDependencies": {
     "@fontsource/fira-mono": "^4.5.10",
     "@fontsource/ibm-plex-mono": "^4.5.12",
-    "@poppanator/sveltekit-svg": "^1.1.0",
+    "@poppanator/sveltekit-svg": "^2.1.1",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/adapter-static": "next",
     "@sveltejs/kit": "next",
@@ -18,14 +18,14 @@
     "cssnano": "^5.1.14",
     "cssnano-preset-advanced": "^5.3.9",
     "figlet": "^1.5.2",
-    "postcss": "^8.4.19",
-    "postcss-import": "^15.0.0",
-    "postcss-scss": "^4.0.5",
-    "sass": "^1.56.1",
-    "svelte": "^3.53.1",
-    "svelte-preprocess": "^4.10.7",
+    "postcss": "^8.4.21",
+    "postcss-import": "^15.1.0",
+    "postcss-scss": "^4.0.6",
+    "sass": "^1.57.1",
+    "svelte": "^3.55.1",
+    "svelte-preprocess": "^5.0.1",
     "typescript": "^4.8.4",
-    "vite": "^3.2.3"
+    "vite": "^4.0.4"
   },
   "type": "module"
 }

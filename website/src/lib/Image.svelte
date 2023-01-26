@@ -46,6 +46,8 @@
 <!-- <p>{size.height}x{size.width} {largestBorder}</p> -->
 <style>
   img {
+    min-width: 32px;
+    min-height: 32px;
     opacity: 0;
     /* transition: opacity 0.2s; */
   }

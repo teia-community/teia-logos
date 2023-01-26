@@ -1,9 +1,54 @@
 /* @import "@fontsource/fira-mono"; */
 /* @import "@fontsource/ibm-plex-mono"; */
 
+@font-face {
+  font-family: 'Iosevka';
+  font-display: swap;
+  font-weight: 400;
+  font-stretch: expanded;
+  font-style: normal;
+  src: url('../static/fonts/iosevka-extended.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Iosevka';
+  font-display: swap;
+  font-weight: 400;
+  font-stretch: expanded;
+  font-style: italic;
+  src: url('../static/fonts/iosevka-extendeditalic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Iosevka';
+  font-display: swap;
+  font-weight: 500;
+  font-stretch: expanded;
+  font-style: normal;
+  src: url('../static/fonts/iosevka-extendedmedium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Iosevka';
+  font-display: swap;
+  font-weight: 600;
+  font-stretch: expanded;
+  font-style: normal;
+  src: url('../static/fonts/iosevka-extendedsemibold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Iosevka';
+  font-display: swap;
+  font-weight: 700;
+  font-stretch: expanded;
+  font-style: normal;
+  src: url('../static/fonts/iosevka-extendedbold.woff2') format('woff2');
+}
+
+
 :root {
-  font-family: "iosevka-extended", monospace;
-  --font-mono: "iosevka-extended", monospace;
+  font-family: "Iosevka", "Courier New";
+  font-stretch: expanded;
+  --font-mono: "Iosevka", "Courier New" ;
   --pure-white: #ffffff;
   --primary-color: #b9c6d2;
   --secondary-color: #d0dde9;
@@ -49,15 +94,7 @@
   background: #555;
 }
 
-@font-face {
-  font-family: "iosevka-extended";
-  font-display: swap;
-  font-weight: 400;
-  font-stretch: expanded;
-  font-style: normal;
-  src: url("../static/fonts/iosevka-extended.woff2") format("woff2"),
-    url("../static/fonts/iosevka-extended.ttf") format("truetype");
-}
+
 
 body {
   min-height: 100vh;
@@ -91,12 +128,11 @@ h1,
 h2,
 p {
   font-weight: 400;
+  line-height: 150%;
   color: var(--text-color);
 }
 
-p {
-  line-height: 1;
-}
+
 
 a {
   color: var(--accent-color);
@@ -110,6 +146,7 @@ a:hover {
 h1 {
   font-size: 2rem;
   text-align: center;
+  font-weight: 700;
 }
 
 h2 {

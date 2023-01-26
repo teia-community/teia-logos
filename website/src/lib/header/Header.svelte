@@ -35,7 +35,13 @@
   </nav>
 </header>
 
-<style global>
+<style global lang="scss">
+  #menu {
+    visibility: hidden;
+    @media (min-width: 600px) {
+      visibility: visible;
+    }
+  }
   #menu_cont {
     display: flex;
     flex-wrap: nowrap;

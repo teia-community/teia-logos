@@ -12,6 +12,10 @@ const config = {
   plugins: [sveltekit(), svg()],
   server: {
     port: 3099,
+    fs: {
+      // Allow serving files from one level up to the project root
+      allow: ["../.."],
+    },
   },
 
   define: {
